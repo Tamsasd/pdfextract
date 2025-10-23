@@ -11,7 +11,7 @@ A kinyert adatok táblázatban, valamint nyers, másolható JSON formátumban is
 ---
 
 ### Használat
-1. Nyisd meg a weboldalt  
+1. Nyisd meg a weboldalt (https://tamas.horneczki.hu/pdfextract/)
 2. Válaszd ki a feldolgozandó PDF-et. A program automatikusan feldolgozza azt.  
 3. Az eredmény 3 részben jelenik meg: allergének, tápértékek, JSON  
    (ha a dokumentum scannelt, a Force OCR kapcsolóval kényszeríthető OCR feldolgozás)
