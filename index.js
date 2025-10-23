@@ -130,7 +130,6 @@ const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
 
-const { PDFParse } = require("pdf-parse");
 const OpenAI = require("openai");
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -227,8 +226,6 @@ Szöveg:
     else if (resp.output_text) extracted = JSON.parse(resp.output_text);
     else throw new Error("LLM output parsing error");
 
-    Buffer.from(req.file.originalname, 'latin1').toString('utf8');
-
     res.json({
       fileName: req.file.originalname,
       usedOCR,
@@ -247,7 +244,7 @@ app.use((err, _req, res, _next) => {
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, "0.0.0.0", () => {
-  console.log('Server is running at http://localhost:'+PORT);
+  console.log(`Server is running at http://localhost:${PORT}`);
 });
 
 const OCR_DPI = 300;
@@ -320,12 +317,10 @@ async function ocrPngBuffers(buffers, lang = "hun") {
 // szöveg kitisztítása regexel
 function Cleanup(t) {
   return (t || "")
-    // tipikus félreolvasások
     .replace(/Bncrgia|Bnergia|Enerqia/gi, "Energia")
     .replace(/Carbolydrat[eó]/gi, "Carbohydrate")
     .replace(/S[óo]\s*\/\s*Salt/gi, "Só/ Salt")
-    // vessző/pont, szóközök
-    .replace(/(\d)\s+(\d)/g, "$1.$2")       // 11 5 -> 11.5
+    .replace(/(\d)\s+(\d)/g, "$1.$2")
     .replace(/k!\b/gi, "kJ")
     .replace(/\s+/g, " ")
     .trim();
