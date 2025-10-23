@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>PDF Kinyerés</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Allergén & Tápérték kinyerés</h1>
+
+  <form id="form" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+    <input id="fileInput" type="file" name="file" accept="application/pdf" hidden />
+    <div id="dropzone" role="button" tabindex="0" aria-controls="fileInput"
+      aria-label="PDF feltöltése: húzd ide vagy kattints">
+      <span id="drop">Dobd ide</span> a PDF-et vagy <span id="click">kattints</span>
+    </div>
+    <button id="submitButton" type="submit" hidden>Elemzés</button>
+  </form>
+
+  <label><input type="checkbox" id="force" />Force OCR</label>
+  <p id="status"></p>
+
+  <h2 id="resultTitle">Eredmény<span id="filename"></span></h2>
+  <div id="result">
+  </div>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"; rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+
+  <h3 id="rawTitle">Nyers JSON</h3>
+  <pre id="raw_container">
+    <code class="language-json" id="raw"></code>
+    <div id="copy"><img src="copy.png"></div>
+  </pre>
+
+  <button id="color_mode" onclick="toggleTheme()"><img src="dark.png"></button>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

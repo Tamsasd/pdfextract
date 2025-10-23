@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+:root, :root[data-theme="light"] {
+  --color-text: black;
+  --color-text-hover: #0077cc;
+  --color-subtle-border: #e0e4eb;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f0f4fa;
+  --color-bg-tertiary: #e6ecf4;
+  --color-bg-muted: #f9fafb;
+  --color-bg-hover: #d9e3f0;
+  --color-border-muted: #cfd7e3;
+  --color-border-strong: #aab7c6;
+  --color-scrollbar-thumb: #c7ccd1;
+  --color-scrollbar-thumb-hover: #aeb4bb;
+  --color-text-inverse: #ffffff;
+  --color-error: #d32f2f;
+  --color-code-button: #b7b7b7;
+  --color-code-button-hover: #7f7f7f;
+  --color-shadow: lightgrey;
+}
+
+:root[data-theme="dark"] {
+  --color-text: white;
+  --color-text-hover: #ffd166;
+  --color-subtle-border: #333;
+  --color-bg-primary: rgb(33, 33, 33);
+  --color-bg-secondary: rgb(45, 45, 45);
+  --color-bg-tertiary: #3a3a3a;
+  --color-bg-muted: #1a1a1a;
+  --color-bg-hover: #525252;
+  --color-border-muted: #555;
+  --color-border-strong: #888;
+  --color-scrollbar-thumb: #555;
+  --color-scrollbar-thumb-hover: #777;
+  --color-text-inverse: #000;
+  --color-error: #ef5350;
+  --color-code-button: #2d2d2d;
+  --color-code-button-hover: #1f1f1f;
+  --color-shadow: #131313;
+}
+
+* {
+  color: var(--color-text);
+  font-family: system-ui, sans-serif;
+  transition: all 0.2s;
+}
+
+@property --angle {
+  inherits: false;
+  initial-value: 0deg;
+  syntax: "<angle>";
+}
+
+@keyframes spin {
+  from { --angle: 0deg; }
+  to { --angle: 360deg; }
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+table {
+  background-color: var(--color-bg-secondary);
+  border-collapse: collapse;
+  border-radius: 0.7em;
+  box-shadow: 0 0 0.5em var(--color-shadow);
+  overflow: hidden;
+}
+
+th,
+td {
+  border: 1px solid var(--color-subtle-border);
+  padding: .5rem .75rem;
+  text-align: center;
+}
+
+th {
+  background: var(--color-bg-tertiary);
+}
+
+.error {
+  color: var(--color-error);
+}
+
+pre {
+  border-radius: 1em;
+  overflow: auto;
+  padding: .75rem;
+}
+
+#copy,
+#color_mode {
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  line-height: 100%;
+  margin: 0;
+  padding: 0.25em;
+  position: absolute;
+  right: 1rem;
+}
+
+#copy {
+  top: 0.5rem;
+}
+
+#color_mode {
+  top: 1rem;
+}
+
+#copy {
+  background-color: var(--color-code-button);
+}
+
+#copy:hover {
+  background-color: var(--color-code-button-hover);
+}
+
+#color_mode {
+  background-color: var(--color-bg-secondary);
+}
+
+#color_mode:hover {
+  background-color: var(--color-bg-tertiary);
+}
+
+#dropzone {
+  background-color: var(--color-bg-primary);
+  border: 3px dashed var(--color-border-muted);
+  border-radius: 0.75em;
+  cursor: pointer;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+  font-size: large;
+  margin-bottom: 0.2em;
+  padding: 2em;
+  position: relative;
+  text-align: center;
+}
+
+#dropzone.dragover {
+  border-color: var(--color-border-strong);
+}
+
+#dropzone:hover > #click,
+#dropzone.dragover > #drop {
+  color: var(--color-text-hover);
+  text-decoration: underline;
+}
+
+#filename {
+  font-size: medium;
+  font-weight: normal;
+  margin-left: 0.5rem;
+}
+
+#filename::before { content: '('; }
+#filename::after { content: ')'; }
+
+#raw_container {
+  background-color: var(--color-bg-secondary);
+  box-shadow: 0 0 0.5em var(--color-shadow);
+  position: relative;
+}
+
+#result_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+}
+
+#result_container h4 {
+  margin-bottom: 0.5em;
+  margin-top: 0;
+}
+
+#result > pre {
+  padding: 0 0.75rem;
+}
+
+#status {
+  float: right;
+  margin-top: 0;
+}
+
+.spinner {
+  border: thin solid var(--color-subtle-border) !important;
+}
+
+.spinner::after {
+  animation: 5s spin linear infinite;
+  background-image: conic-gradient(from var(--angle), transparent 80%, var(--color-text-hover));
+  border-radius: 0.75em;
+  content: '';
+  height: 100%;
+  left: 50%;
+  padding: 0.2em;
+  position: absolute;
+  top: 50%;
+  translate: -50% -50%;
+  width: 100%;
+  z-index: -1;
+}
+
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--color-bg-muted);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-thumb);
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--color-scrollbar-thumb-hover);
+}
