@@ -14,7 +14,7 @@ A kinyert adatok táblázatban, valamint nyers, másolható JSON formátumban is
 1. Nyisd meg a weboldalt  
 2. Válaszd ki a feldolgozandó PDF-et. A program automatikusan feldolgozza azt.  
 3. Az eredmény 3 részben jelenik meg: allergének, tápértékek, JSON  
-   (ha a dokumentum scannelt, a *Force OCR* kapcsolóval kényszeríthető OCR feldolgozás)
+   (ha a dokumentum scannelt, a Force OCR kapcsolóval kényszeríthető OCR feldolgozás)
 
 ---
 
@@ -52,16 +52,16 @@ Az `OCR_DPI` konstans változtatásával módosíthatjuk a képek felbontását,
 
 1. A felhasználó kiválaszt egy fájlt
 2. A weboldal HTTP POST kérést küld a szerver felé a `/upload` endpointtal
-3. A szerver a **Multer** csomag segítségével fogadja a fájlt a memóriába
+3. A szerver a Multer csomag segítségével fogadja a fájlt a memóriába
 4. Ellenőrzi, hogy PDF típusú-e, és javítja a fájlnév kódolását
 5. A szerver megpróbálja közvetlenül kiolvasni a PDF szövegét
 6. Ellenőrzi, elég értelmes karaktert tartalmaz-e a szöveg
-7. Szükség esetén **Tesseract OCR** feldolgozás:
+7. Szükség esetén Tesseract OCR feldolgozás:
    a. `pdftoppm` PNG képekké alakítja a PDF-et
-   b. a **sharp** könyvtár előfeldolgozza a képeket a könnyebb olvashatóság érdekében
-   c. a **Tesseract** felismeri a szöveget
+   b. a sharp könyvtár előfeldolgozza a képeket a könnyebb olvashatóság érdekében
+   c. a Tesseract felismeri a szöveget
    d. az eredményt regex-szel megtisztítja
-8. Adatkinyerés **OpenAI** segítségével
+8. Adatkinyerés OpenAI segítségével
 9. A szerver elküldi a választ a kliensnek rendezett JSON válaszban
 10. Az eredményt a böngésző megjeleníti
 
