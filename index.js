@@ -122,6 +122,7 @@ const path = require("path");
 const tmp = require("tmp");
 const Tesseract = require("tesseract.js");
 const sharp = require("sharp");
+process.env.TESSDATA_PREFIX = require("path").join(__dirname, "tessdata");
 
 require("dotenv").config();
 
@@ -229,8 +230,9 @@ app.use((err, _req, res, _next) => {
   res.status(400).json({ error: err.message || "Error" });
 });
 
-app.listen(4000, () => {
-  console.log("Server is running at http://localhost:4000");
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, "0.0.0.0", () => {
+  console.log('Server is running at http://localhost:${PORT}');
 });
 
 const OCR_DPI = 300;
