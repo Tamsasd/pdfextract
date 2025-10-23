@@ -126,21 +126,37 @@ process.env.TESSDATA_PREFIX = require("path").join(__dirname, "tessdata");
 
 require("dotenv").config();
 
-const cors = require("cors");
-
 const express = require("express");
+const cors = require("cors");
 const multer = require("multer");
 
 const { PDFParse } = require("pdf-parse");
-
 const OpenAI = require("openai");
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const app = express();
-app.use(cors());
+
+const allowedOrigins = [
+  "http://127.0.0.1:3000",
+  "http://localhost:3000"
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("Not allowed by CORS"));
+  },
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type"]
+}));
+
+app.options("*", cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -150,19 +166,6 @@ const upload = multer({
     else cb(new Error("Only PDF files are allowed"));
   },
 });
-
-const cors = require('cors');
-const allowed = ['http://127.0.0.1:3000', 'http://localhost:3000'];
-app.use(cors({
-  origin: (origin, cb) => {
-    if (!origin || allowed.includes(origin)) return cb(null, true);
-    cb(new Error('Not allowed by CORS'));
-  },
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type']
-}));
-
-app.options('*', cors());
 
 app.get("/", (_req, res) => {
   res.send("Hello, I am running!");
