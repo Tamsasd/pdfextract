@@ -88,7 +88,7 @@ form.addEventListener('submit', async (e) => {
 
   try {
     const force = document.getElementById('force').checked ? 'true' : 'false';
-    const res = await fetch(`https://pdfextract-vs5d.onrender.com/upload?force_ocr=${force}`, {
+    const res = await fetch(`pdfextract.railway.internal/upload?force_ocr=${force}`, {
       method: 'POST',
       body: fd
     });
