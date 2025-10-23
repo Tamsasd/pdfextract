@@ -151,6 +151,19 @@ const upload = multer({
   },
 });
 
+const cors = require('cors');
+const allowed = ['http://127.0.0.1:3000', 'http://localhost:3000'];
+app.use(cors({
+  origin: (origin, cb) => {
+    if (!origin || allowed.includes(origin)) return cb(null, true);
+    cb(new Error('Not allowed by CORS'));
+  },
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type']
+}));
+
+app.options('*', cors());
+
 app.get("/", (_req, res) => {
   res.send("Hello, I am running!");
 });
@@ -344,6 +357,8 @@ async function extractText(pdfBuffer, { forceOCR = false } = {}) {
     ? { text: ocrText, usedOCR: true }
     : { text, usedOCR: false };
 }
+
+
 
 
 
