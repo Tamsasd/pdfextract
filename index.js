@@ -354,8 +354,3 @@ async function extractText(pdfBuffer, { forceOCR = false } = {}) {
     ? { text: ocrText, usedOCR: true }
     : { text, usedOCR: false };
 }
-
-
-
-
-

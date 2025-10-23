@@ -16,7 +16,7 @@ const applyTheme = (theme) => {
   root.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
   prismLink.href = theme === "dark" ? prismDark : prismLight;
-  document.getElementById('color_mode').innerHTML = theme === "dark" ? '<img src="light.png"></img>' : '<img src="dark.png"></img>';
+  document.getElementById('color_mode').innerHTML = theme === "dark" ? '<img src="img/light.png"></img>' : '<img src="img/dark.png"></img>';
 };
 
 const toggleTheme = () => {
@@ -35,7 +35,7 @@ function drawResults(data) {
 
   // Nyers json
   rawPre.textContent = JSON.stringify(data, null, 2);
-  copyBtn.innerHTML = '<img src="copy.png">';
+  copyBtn.innerHTML = '<img src="img/copy.png">';
 
   // Kirajzolás
   const { fileName, extracted } = data;
@@ -137,7 +137,7 @@ dropzone.addEventListener('drop', e => {
 
 copyBtn.addEventListener("click", async () => {
   await navigator.clipboard.writeText(rawPre.textContent);
-  copyBtn.innerHTML = '<img src="check.png">';
+  copyBtn.innerHTML = '<img src="img/check.png">';
 });
 
 function hideResult() {
