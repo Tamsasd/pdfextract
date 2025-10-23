@@ -88,11 +88,14 @@ form.addEventListener('submit', async (e) => {
 
   try {
     const force = document.getElementById('force').checked ? 'true' : 'false';
-    const res = await fetch(`https://pdfextract.up.railway.app/upload?force_ocr=${force}`, {
+    console.log('fetched to https://pdfextract-vs5d.onrender.com');
+    const res = await fetch(`https://pdfextract-vs5d.onrender.com/upload?force_ocr=${force}`, {
       method: 'POST',
       body: fd
     });
+    console.log('fetched to https://pdfextract-vs5d.onrender.com');
     const data = await res.json();
+    console.log('fetched to https://pdfextract-vs5d.onrender.com');
     dropzone.classList.remove('spinner');
 
     if (!res.ok) throw new Error(data.error || 'Hiba');
