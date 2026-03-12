@@ -1,4 +1,3 @@
-````markdown
 # PDF Élelmiszerinformáció Kinyerő
 
 ## Felhasználói dokumentáció
@@ -76,4 +75,3 @@ Az `OCR_DPI` konstans változtatásával módosíthatjuk a képek felbontását,
 | `/`             | GET     | „hello” teszt              |
 
 ---
-````
